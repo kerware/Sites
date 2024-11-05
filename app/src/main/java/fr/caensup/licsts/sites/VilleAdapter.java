@@ -11,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class VilleAdapter extends BaseAdapter {
     private LayoutInflater inflater = null;
@@ -42,26 +43,25 @@ public class VilleAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-
-        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View itemView = inflater.inflate(R.layout.ville_layout, viewGroup, false);
-
-        // Créer les composants de itemView
-        TextView tvNom = itemView.findViewById( R.id.tvNom );
-        ImageView ivImage = itemView.findViewById( R.id.ivImage );
-        RatingBar rbEvaluation = itemView.findViewById( R.id.rbEvaluation );
-
+        if ( view == null ) {
+            inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.ville_layout, viewGroup, false);
+            CacheView cache = new CacheView();
+            // Créer les composants de itemView
+            cache.setTvNom( view.findViewById(R.id.tvNom) );
+            cache.setIvImage(view.findViewById(R.id.ivImage) );
+            cache.setRbEvaluation(view.findViewById(R.id.rbEvaluation));
+            view.setTag( cache);
+        }
         // Rchercher la ville en position i
         Ville v = (Ville)getItem( i );
-
         // Créer une couleur avec les 3 composantes RVB
         int couleurVille =  Color.rgb(v.getRouge(),v.getVert(),v.getBleu());
-
         // Ventiler les valeurs de la ville dans les composants de la vue
-        tvNom.setText( v.getNom() );
-        ivImage.setBackgroundColor( couleurVille );
-        rbEvaluation.setRating( (float)v.getEvaluation() );
-
-        return itemView;
+        CacheView cache = (CacheView)view.getTag();
+        cache.getTvNom().setText( v.getNom() );
+        cache.getIvImage().setBackgroundColor( couleurVille );
+        cache.getRbEvaluation().setRating( (float)v.getEvaluation() );
+        return view;
     }
 }
