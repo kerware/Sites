@@ -21,4 +21,24 @@ public class Ville {
     public int getVert() { return vert; }
     public int getBleu() { return bleu; }
     public double getEvaluation() { return evaluation; }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setRouge(int rouge) {
+        this.rouge = rouge;
+    }
+
+    public void setVert(int vert) {
+        this.vert = vert;
+    }
+
+    public void setBleu(int bleu) {
+        this.bleu = bleu;
+    }
+
+    public void setEvaluation(double evaluation) {
+        this.evaluation = evaluation;
+    }
 }

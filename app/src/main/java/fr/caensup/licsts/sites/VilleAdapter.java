@@ -2,6 +2,7 @@ package fr.caensup.licsts.sites;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +14,11 @@ import android.widget.TextView;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class VilleAdapter extends BaseAdapter {
+public class VilleAdapter extends BaseAdapter  {
     private LayoutInflater inflater = null;
     private Context context;
     private List<Ville> lesVilles;
+    private int currentItemPosition;
 
     public void setModele( List<Ville> modele ) {
         lesVilles = modele;
@@ -53,6 +55,7 @@ public class VilleAdapter extends BaseAdapter {
             cache.setRbEvaluation(view.findViewById(R.id.rbEvaluation));
             view.setTag( cache);
         }
+
         // Rchercher la ville en position i
         Ville v = (Ville)getItem( i );
         // Créer une couleur avec les 3 composantes RVB
@@ -62,6 +65,11 @@ public class VilleAdapter extends BaseAdapter {
         cache.getTvNom().setText( v.getNom() );
         cache.getIvImage().setBackgroundColor( couleurVille );
         cache.getRbEvaluation().setRating( (float)v.getEvaluation() );
+        // Ecouteur sur le RatingBar
+
+
         return view;
     }
+
+
 }

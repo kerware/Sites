@@ -7,13 +7,29 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnClock"
+        android:text="Clock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvClock"
+        app:layout_constraintLeft_toRightOf="@id/btnClock"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
     <ListView
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/lvSites"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btnClock"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
